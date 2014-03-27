@@ -34,4 +34,3 @@ try {
 } catch (MongoException $e) {
     die('Error: ' . $e->getMessage());
 }
-?>
