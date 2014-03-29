@@ -1,0 +1,9 @@
+#php_value error_reporting "E_ALL & ~E_NOTICE"
+
+AddDefaultCharset utf-8
+Options -Indexes
+
+RewriteEngine on
+RewriteRule ^(api/[A-Za-z0-9-]+/.*)/?$ /api/index.php [QSA]
+
+ErrorDocument 404 /api/index.php?error=404
