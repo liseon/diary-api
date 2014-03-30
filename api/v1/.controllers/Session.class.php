@@ -12,9 +12,7 @@ class Controller_Session
 
     public function actionDefault() {
         $response = Response::getInstance();
-        $response->setArgs(array(
-                "Main" => "Hello World",
-            ));
+        Api_Session::getInstance();
         $response->output();
     }
 

@@ -14,9 +14,6 @@ class Response extends Pattern_Singleton
      */
     private $args = array();
 
-    const ERROR_FIELD_CODE = 'error';
-
-    const ERROR_FIELD_TEXT = 'errorDescription';
 
     protected function __construct() {
     }
@@ -28,8 +25,8 @@ class Response extends Pattern_Singleton
         return parent::getInstance();
     }
 
-    public function setArgs($args) {
-        $this->args = array_merge($this->args, $args);
+    public function setArg($name, $value) {
+        $this->args[$name] = $value;
     }
 
     public function unsetArg($name) {
@@ -42,8 +39,8 @@ class Response extends Pattern_Singleton
 
     public function setError($errorText, $errorCode) {
         $this->setArgs(array(
-                self::ERROR_FIELD_CODE => $errorCode,
-                self::ERROR_FIELD_TEXT => $errorText,
+                Api_ParamNames::ERROR_FIELD_CODE => $errorCode,
+                Api_ParamNames::ERROR_FIELD_TEXT => $errorText,
             ));
     }
 

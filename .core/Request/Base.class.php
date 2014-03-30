@@ -19,9 +19,12 @@ class Request extends Pattern_Singleton {
 
     private $action = "default";
 
+    private $ip;
+
     protected function __construct() {
         $this->host =  $_SERVER['HTTP_HOST'];
         $this->method = $_SERVER['REQUEST_METHOD'];
+        $this->ip = $_SERVER['REMOTE_ADDR'];
         if (preg_match("/^(.+)(\?.*)$/", $_SERVER['REQUEST_URI'], $uri)) {
             $uri = $uri[1];
         } else {
@@ -46,11 +49,32 @@ class Request extends Pattern_Singleton {
         return self::getInstance()->apiVersion;
     }
 
+    public static function getHost() {
+        return self::getInstance()->host;
+    }
+
     public static function getController() {
         return ucfirst(self::getInstance()->controller);
     }
 
     public static function getAction() {
         return ucfirst(self::getInstance()->action);
+    }
+
+    public static function getIp() {
+        return self::getInstance()->ip;
+    }
+
+    public static function issetParam($name) {
+        return isset($_REQUEST[$name]);
+    }
+
+    public static function getParam($name) {
+        if (self::issetParam($name)) {
+
+            return $_REQUEST[$name];
+        }
+
+        return false;
     }
 }

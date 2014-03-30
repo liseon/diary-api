@@ -1,4 +1,7 @@
 <?
+
+define("PROJECT_ROOT_PATH", "../");
+
 function includeFile($file) {
     if (file_exists($file)) {
         include_once $file;
@@ -37,6 +40,8 @@ spl_autoload_register(
         }
     }
 );
+
+Mcache::getInstance();
 
 $controller = "Controller_" . Request::getController();
 $action = "action" . Request::getAction();
